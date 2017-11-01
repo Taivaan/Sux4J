@@ -1,0 +1,53 @@
+
+// Apply the java-library plugin to add support for Java Library
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+apply plugin: 'eclipse'
+
+//Project variables
+group='it.unimi.dsi'
+version='4.1.0'
+description='Sux4j is an implementation of succinct data structure in Java. It provides a number of related implementations covering ranking/selection over bit arrays, compressed lists and minimal perfect hashing.'
+
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId "$group"
+            artifactId "$project.name"
+            version "$version"
+            
+            from components.java
+        }
+    }
+}
+
+dependencies {
+
+		compile "ch.qos.logback:logback-classic:latest.release"
+		compile "commons-configuration:commons-configuration:1.8"
+		compile "commons-io:commons-io:latest.release"
+		compile "commons-lang:commons-lang:latest.release"
+		compile "commons-collections:commons-collections:latest.release"
+		compile "it.unimi.dsi:fastutil:latest.release"
+		compile "it.unimi.dsi:dsiutils:latest.release"
+		compile "com.martiansoftware:jsap:latest.release"
+		testCompile "junit:junit:latest.release"
+		testCompile "emma:emma:latest.release"
+		testCompile "emma:emma_ant:latest.release"
+
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+}
+
+
+/*TODO display performance testing results in a report and remove this*/
+test {
+    dependsOn cleanTest
+    testLogging.showStandardStreams = true
+}

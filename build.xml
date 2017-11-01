@@ -19,7 +19,7 @@
 	<target name="ivy-clean" description="Cleans ivy cache, jars dir and ivy installation">
 		<delete dir="${jars.dir}"/>
 	</target>
-
+	<!--Chckpt-->
 	<target name="ivy-pom" description="Creates POM">
 		<ivy:resolve/>
 		<ivy:deliver deliverpattern="${dist}/ivy.xml" pubrevision="${version}" status="release"/>
